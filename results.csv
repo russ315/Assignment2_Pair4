@@ -1,0 +1,2 @@
+Algorithm,DataSize,DataType,Comparisons,Swaps,Duration(ms)
+BinomialMinHeap,20000,random,712218,470556,53,363
