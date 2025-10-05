@@ -14,11 +14,14 @@ public class PerformanceTracker {
         endTime = System.nanoTime();
     }
 
-    public void addComparison() {
+    /** Count a comparison (e.g., key1 < key2). Returns true for convenient inline usage. */
+    public boolean cmp(boolean result) {
         comparisons++;
+        return result;
     }
 
-    public void addSwap() {
+    /** Record a swap/move operation. */
+    public void swap() {
         swaps++;
     }
 
