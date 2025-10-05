@@ -1,5 +1,6 @@
 package org.example;
 
+import algorithms.MaxHeap;
 import metrics.CsvExporter;
 import metrics.PerformanceTracker;
 import org.example.heap.BinomialHeap;
@@ -10,23 +11,19 @@ public class Main {
         int n = 20000;
         String dataType = "random";
         PerformanceTracker tracker = new PerformanceTracker();
-        BinomialHeap heap = new BinomialHeap(tracker);
+        MaxHeap heap = new MaxHeap(10, tracker);
 
-        int[] data = new int[n];
-        Random rnd = new Random(42);
-        for (int i = 0; i < n; i++) data[i] = rnd.nextInt(1_000_000);
-
-        tracker.reset();
         tracker.start();
         BinomialHeap.Node[] handles = new BinomialHeap.Node[n];
         for (int i = 0; i < n; i++) {
             handles[i] = heap.insert(data[i]);
         }
 
-        for (int i = 0; i < n/100; i++) {
-            int idx = rnd.nextInt(n);
-            heap.decreaseKey(handles[idx], data[idx]/2);
-        }
+        heap.insert(4);
+        heap.insert(10);
+        heap.insert(3);
+        heap.insert(5);
+        heap.insert(1);
 
         int last = Integer.MIN_VALUE;
         for (int i = 0; i < n; i++) {
@@ -36,13 +33,9 @@ public class Main {
         }
         tracker.stop();
 
-        CsvExporter exporter = new CsvExporter("results.csv");
-        exporter.export("BinomialMinHeap", n, dataType,
-                tracker.getComparisons(),
-                tracker.getSwaps(),
-                tracker.getDurationMs());
-
-        System.out.printf("Done. Comparisons=%d, Swaps=%d, Time=%.2f ms\n",
-                tracker.getComparisons(), tracker.getSwaps(), tracker.getDurationMs());
+        System.out.println("Max: " + heap.extractMax());
+        System.out.println("Comparisons: " + tracker.getComparisons());
+        System.out.println("Swaps: " + tracker.getSwaps());
+        System.out.println("Duration (ms): " + tracker.getDurationMs());
     }
 }
