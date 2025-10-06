@@ -1,4 +1,4 @@
-package algorithms;
+package tests;
 
 import metrics.PerformanceTracker;
 import org.junit.jupiter.api.Test;
@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class MaxHeapTest {
-
     @Test
     void testInsertAndExtractMax() {
         PerformanceTracker tracker = new PerformanceTracker();

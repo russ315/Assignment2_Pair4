@@ -16,8 +16,12 @@ public class PerformanceTracker {
 
     /** Count a comparison (e.g., key1 < key2). Returns true for convenient inline usage. */
     public boolean cmp(boolean result) {
-        comparisons++;
+        addComparison();
         return result;
+    }
+
+    public void addComparison() {
+        comparisons++;
     }
 
     /** Record a swap/move operation. */
@@ -47,4 +51,6 @@ public class PerformanceTracker {
         startTime = 0;
         endTime = 0;
     }
+
+
 }

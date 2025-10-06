@@ -1,4 +1,4 @@
-package algorithms;
+package algorithms.heap.minHeap;
 
 import metrics.PerformanceTracker;
 
@@ -39,7 +39,7 @@ public class MaxHeap {
             tracker.addComparison();
             if (heap[current] > heap[parent(current)]) {
                 swap(current, parent(current));
-                tracker.addSwap();
+                tracker.swap();
                 current = parent(current);
             } else {
                 break;
@@ -79,7 +79,7 @@ public class MaxHeap {
 
         if (largest != i) {
             swap(i, largest);
-            tracker.addSwap();
+            tracker.swap();
             heapify(largest);
         }
     }
