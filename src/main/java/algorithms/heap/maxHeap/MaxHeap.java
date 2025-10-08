@@ -1,11 +1,12 @@
-package algorithms.heap.minHeap;
+package algorithms.heap.maxHeap;
 
 import metrics.PerformanceTracker;
 
-public class MaxHeap {
+public class MaxHeap implements IMaxHeap {
     private final int[] heap;
     private int size;
     private final PerformanceTracker tracker;
+
 
     public MaxHeap(int capacity, PerformanceTracker tracker) {
         this.heap = new int[capacity];
@@ -13,18 +14,7 @@ public class MaxHeap {
         this.tracker = tracker;
     }
 
-    private int parent(int i) {
-        return (i - 1) / 2;
-    }
-
-    private int left(int i) {
-        return 2 * i + 1;
-    }
-
-    private int right(int i) {
-        return 2 * i + 2;
-    }
-
+    @Override
     public void insert(int value) {
         if (size == heap.length) {
             throw new IllegalStateException("Heap is full");
@@ -47,6 +37,7 @@ public class MaxHeap {
         }
     }
 
+    @Override
     public int extractMax() {
         if (size == 0) {
             throw new IllegalStateException("Heap is empty");
@@ -58,6 +49,37 @@ public class MaxHeap {
         return root;
     }
 
+
+    @Override
+    public int getSize() {
+        return size;
+    }
+
+    @Override
+    public void printHeap() {
+        for (int i = 0; i < size; i++) {
+            System.out.print(heap[i] + " ");
+        }
+        System.out.println();
+    }
+
+    private int parent(int i) {
+        return (i - 1) / 2;
+    }
+
+    private int left(int i) {
+        return 2 * i + 1;
+    }
+
+    private int right(int i) {
+        return 2 * i + 2;
+    }
+
+    private void swap(int i, int j) {
+        int temp = heap[i];
+        heap[i] = heap[j];
+        heap[j] = temp;
+    }
     private void heapify(int i) {
         int largest = i;
         int left = left(i);
@@ -82,22 +104,5 @@ public class MaxHeap {
             tracker.swap();
             heapify(largest);
         }
-    }
-
-    private void swap(int i, int j) {
-        int temp = heap[i];
-        heap[i] = heap[j];
-        heap[j] = temp;
-    }
-
-    public int getSize() {
-        return size;
-    }
-
-    public void printHeap() {
-        for (int i = 0; i < size; i++) {
-            System.out.print(heap[i] + " ");
-        }
-        System.out.println();
     }
 }

@@ -1,6 +1,5 @@
 package algorithms.heap.minHeap;
 
-import algorithms.heap.MinHeap;
 import metrics.PerformanceTracker;
 
 public class BinomialHeap implements MinHeap {

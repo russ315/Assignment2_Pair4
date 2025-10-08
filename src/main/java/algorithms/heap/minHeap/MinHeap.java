@@ -1,4 +1,4 @@
-package algorithms.heap;
+package algorithms.heap.minHeap;
 
 public interface MinHeap {
     /** Insert a key and return a handle (node id) used for decreaseKey/delete. */
